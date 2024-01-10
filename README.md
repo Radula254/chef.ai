@@ -18,7 +18,7 @@ Database:
 MongoDB
 
 API Integration:
-Edamam API
+Edamam API Developers
 
 Authentication:
 JSON Web Tokens (JWT)
