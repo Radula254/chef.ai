@@ -1,0 +1,29 @@
+<!-- Your HTML file -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top Pizza Recipes</title>
+  <link rel="stylesheet" href="/recipe.css">
+</head>
+<body>
+  <h1>Pizza Recipes</h1>
+  
+  <main>
+    <button id="loadRecipes">Load Pizza Recipes</button>
+    <div id="recipeList"></div>
+    <!-- Button to redirect to recipe.ejs -->
+    <button id="redirectToRecipe"></a>Go to Recipes</button>
+    
+  </main>
+  <script src="/js/pizza.js"></script>
+  <script>
+    // Add click event listener to the 'Go to recipe Recipes' button
+    document.getElementById('redirectToRecipe').addEventListener('click', function() {
+      window.location.href = '/recipe';
+    });
+  </script>
+</body>
+</html>

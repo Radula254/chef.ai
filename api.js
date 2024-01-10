@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const path = require('path');
 const authRoutes = require('./routes/authRoutes');
 const cookieParser = require('cookie-parser');
 const { requireAuth, checkUser } = require('./middleware/authMiddleware');
@@ -12,7 +13,10 @@ app.use(express.json());
 app.use(cookieParser());
 
 //view engine 
-app.set('view engine', 'ejs');
+app.set('view engine', 'ejs' , 'js');
+app.use('/recipe_api', express.static(path.join(__dirname, 'recipe_api')));
+
+app.use(express.static(path.join(__dirname, 'recipe_api'), { extensions: ['js'] }));
 
 //database connection
 mongoose.
@@ -29,5 +33,6 @@ connect('mongodb+srv://test:test123@cluster0.qktqzjg.mongodb.net/?retryWrites=tr
 //routes
 app.get('*', checkUser);
 app.get('/', (req, res) => res.render('home'));
-app.get('/smoothie', requireAuth, (req, res) => res.render('smoothie'));  
+app.get('/recipe', requireAuth, (req, res) => res.render('recipe')); 
+app.get('/chicken', requireAuth, (req, res) => res.render('chicken')); 
 app.use(authRoutes);
