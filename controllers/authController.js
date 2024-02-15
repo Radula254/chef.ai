@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose')
 
 //handle errors
 const handleErrors = (err) => {
@@ -49,6 +50,7 @@ module.exports.login_get = (req, res) => {
 
 module.exports.signup_post = async(req, res) => {
     const { email, password } = req.body;
+    mongoose.connect(process.env.MONGO_URL)
 
    try {
     const user = await User.create({ email, password });
@@ -64,6 +66,7 @@ module.exports.signup_post = async(req, res) => {
 
 module.exports.login_post = async (req, res) => {
     const { email, password } = req.body;
+    mongoose.connect(process.env.MONGO_URL)
 
     try {
         const user = await User.login(email, password);
@@ -78,6 +81,7 @@ module.exports.login_post = async (req, res) => {
 }
 
 module.exports.logout_get = (req, res) => {
+    mongoose.connect(process.env.MONGO_URL)
     res.cookie('jwt', '', { maxAge: 1 });
     res.redirect('/');
 }

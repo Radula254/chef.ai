@@ -4,6 +4,7 @@ const path = require('path');
 const authRoutes = require('./routes/authRoutes');
 const cookieParser = require('cookie-parser');
 const { requireAuth, checkUser } = require('./middleware/authMiddleware');
+require('dotenv').config();
 
 const app = express()
 
@@ -20,7 +21,7 @@ app.use(express.static(path.join(__dirname, 'recipe_api'), { extensions: ['js'] 
 
 //database connection
 mongoose.
-connect('mongodb+srv://test:test123@cluster0.qktqzjg.mongodb.net/?retryWrites=true&w=majority')
+connect(process.env.MONGO_URL)
 .then(() => {
     console.log("Connected to MongoDB server")
     app.listen(3000, ()=> {

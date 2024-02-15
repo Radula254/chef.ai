@@ -1,0 +1,11 @@
+{
+    "buildCommand": "npm install",
+    "outputDirectory": "client/dist",
+    "rewrites": [
+      {
+        "source": "/api/(.*)",
+        "destination": "/api.js"
+      },
+      {"source": "/(.*)", "destination": "/api.js"}
+    ]
+  }
